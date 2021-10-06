@@ -8,6 +8,7 @@ import (
 	"github.com/muhfajar/go-zero-cors-middleware/test/greet/internal/handler"
 	"github.com/muhfajar/go-zero-cors-middleware/test/greet/internal/svc"
 
+	middleware "github.com/muhfajar/go-zero-cors-middleware"
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
 )
@@ -21,10 +22,18 @@ func main() {
 	conf.MustLoad(*configFile, &c)
 
 	ctx := svc.NewServiceContext(c)
-	server := rest.MustNewServer(c.RestConf)
+	// Register cors handler to handle preflight request
+	cors := middleware.NewCORSMiddleware(&middleware.Options{})
+	server := rest.MustNewServer(c.RestConf, rest.WithNotAllowedHandler(
+		cors.Handler(),
+	))
+
 	defer server.Stop()
 
 	handler.RegisterHandlers(server, ctx)
+
+	// Register cors middleware
+	server.Use(cors.Handle)
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
