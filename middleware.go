@@ -59,6 +59,10 @@ func (m *CORSMiddleware) setHeader(w http.ResponseWriter, r *http.Request) {
 	allowMethods := strings.Join(m.allowMethods, ",")
 	exposeHeaders := strings.Join(m.exposeHeaders, ",")
 
+	if origin == "" && !m.allowCredentials {
+		origin = "*"
+	}
+
 	w.Header().Set("Access-Control-Allow-Origin", origin)
 	w.Header().Set("Access-Control-Allow-Headers", allowHeader)
 	w.Header().Set("Access-Control-Allow-Credentials", allowCredentials)
