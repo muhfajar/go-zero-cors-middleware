@@ -80,15 +80,15 @@ func TestCORSMiddleware_Handle(t *testing.T) {
 		t.Errorf("Response status: %d; want %d", status, http.StatusNoContent)
 	}
 
-	if header := rr.Result().Header; header == nil {
+	if header := rr.Header(); header == nil {
 		t.Errorf("Response header: nil; want %v", header)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Methods"), allowMethodsExpected)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Origin"), allowOriginExpected)
 	}
 }
@@ -115,15 +115,15 @@ func TestCORSMiddleware_HandleOptions(t *testing.T) {
 		t.Errorf("Response status: %d; want %d", status, http.StatusNoContent)
 	}
 
-	if header := rr.Result().Header; header == nil {
+	if header := rr.Header(); header == nil {
 		t.Errorf("Response header: nil; want %v", header)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Methods"), allowMethodsExpected)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Origin"), allowOriginExpected)
 	}
 }
@@ -149,15 +149,15 @@ func TestCORSMiddleware_Handler(t *testing.T) {
 		t.Errorf("Response status: %d; want %d", status, http.StatusNoContent)
 	}
 
-	if header := rr.Result().Header; header == nil {
+	if header := rr.Header(); header == nil {
 		t.Errorf("Response header: nil; want %v", header)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Methods"), allowMethodsExpected)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Origin"), allowOriginExpected)
 	}
 }
@@ -185,15 +185,15 @@ func TestCORSMiddleware_HandlerOptions(t *testing.T) {
 		t.Errorf("Response status: %d; want %d", status, http.StatusNoContent)
 	}
 
-	if header := rr.Result().Header; header == nil {
+	if header := rr.Header(); header == nil {
 		t.Errorf("Response header: nil; want %v", header)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Methods") != allowMethodsExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Methods"), allowMethodsExpected)
 	}
 
-	if header := rr.Result().Header; header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
+	if header := rr.Header(); header.Get("Access-Control-Allow-Origin") != allowOriginExpected {
 		t.Errorf("Response header: %s; want %v", header.Get("Access-Control-Allow-Origin"), allowOriginExpected)
 	}
 }
