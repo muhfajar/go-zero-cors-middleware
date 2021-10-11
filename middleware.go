@@ -54,7 +54,7 @@ func (m *CORSMiddleware) Handler() http.Handler {
 
 func (m *CORSMiddleware) setHeader(w http.ResponseWriter, r *http.Request) {
 	origin := r.Header.Get("Origin")
-	allowHeader := strings.Join(m.exposeHeaders, ",")
+	allowHeaders := strings.Join(m.allowHeaders, ",")
 	allowCredentials := strconv.FormatBool(m.allowCredentials)
 	allowMethods := strings.Join(m.allowMethods, ",")
 	exposeHeaders := strings.Join(m.exposeHeaders, ",")
@@ -64,7 +64,7 @@ func (m *CORSMiddleware) setHeader(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Access-Control-Allow-Origin", origin)
-	w.Header().Set("Access-Control-Allow-Headers", allowHeader)
+	w.Header().Set("Access-Control-Allow-Headers", allowHeaders)
 	w.Header().Set("Access-Control-Allow-Credentials", allowCredentials)
 	w.Header().Set("Access-Control-Allow-Methods", allowMethods)
 	w.Header().Set("Access-Control-Expose-Headers", exposeHeaders)
